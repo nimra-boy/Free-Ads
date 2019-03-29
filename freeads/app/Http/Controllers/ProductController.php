@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
   
 use App\Product;
+use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
   
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +22,9 @@ class ProductController extends Controller
     {
         $userId = Auth::user()->id;
         $products = Product::where('user_id', $userId)->paginate(5);
+        $image = Image::all();
   
-        return view('products.index',compact('products'));
+        return view('products.index',compact('products', 'image'));
     }
    
     /**
@@ -45,12 +51,14 @@ class ProductController extends Controller
             'price' => 'required',
         ]);
   
-        Product::create([
+        $post = Product::create([
             'user_id' => Auth::user()->id,
             'title' => request('title'),
             'description' => request('description'),
             'price' => request('price'),
         ]);
+
+        $this->addPics($post, $request);
    
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');
@@ -64,7 +72,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show',compact('product'));
+        $image = Image::all();
+        return view('products.show',compact('product', 'image'));
     }
    
     /**
@@ -116,5 +125,26 @@ class ProductController extends Controller
   
         return redirect()->route('products.index')
                         ->with('success','Product deleted successfully');
+    }
+
+    private function addPics($post, Request $request)
+    {
+        $this->validate($request, [
+            'image' => 'required',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        if($request->hasFile('image'))
+        {
+            foreach($request->file('image') as $image)
+            {
+                $name = $image ? time().'_'.rand() . '.'.$image->getClientOriginalExtension():'';
+                $image->move(public_path('/images'), $name);
+                $img=Image::create(array(
+                    'product_id'=> $post->id,
+                    'image'=> $name
+                ));
+            }
+        }
     }
 }

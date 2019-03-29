@@ -23,7 +23,7 @@
                                 <td class="text-center"><a href="{{ route('edit') }}" id="edit-user" data-id="{{ Auth::user()->id }}" class="btn btn-info">Edit</a></td>
                                 <td>{{ Auth::user()->email }}</td>
                                 <td class="text-center"><a href="{{ route('edit') }}" id="edit-user" data-id="{{ Auth::user()->id }}" class="btn btn-info">Edit</a></td>
-                                <td class="text-center"><a href="{{ route('reset') }}" class="btn btn-info">Edit</a></td>
+                                <td class="text-center"><a href="{{ url('/change') }}" class="btn btn-info">Edit</a></td>
                                 <td class="text-center"><a href="{{ route('destroy') }}" id="delete-user" data-id="{{ Auth::user()->id }}" class="btn btn-danger delete-user">Delete</a></td>
                             </tr>
                         </tbody>

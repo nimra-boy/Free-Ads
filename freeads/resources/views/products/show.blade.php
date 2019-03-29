@@ -28,6 +28,16 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Images:</strong>
+                @foreach ($image as $show)
+                    @if ($product->id === $show->product_id)
+                        <img style="width: 150px; height: 150px;" src="{{ asset('images/' . $show->image) }}">
+                    @endif
+                @endforeach
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Price:</strong>
                 {{ $product->price }}
             </div>

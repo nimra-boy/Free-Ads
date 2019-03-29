@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
         @if(Auth::check())
+            <a href="{{ url('/profil') }}"><button type="button" class="btn btn-primary">Back</button></a>
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
 

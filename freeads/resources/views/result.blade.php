@@ -3,34 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
-            <form action="{{ route('result') }}" method="get">
-            @csrf
-                <div class="form-group d-inline-block">
-                    <input type="search" name="search" class="form-control" placeholder="Search by title">
-                </div>
-                <div class="form-group d-inline-block">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-            </form>
-        </div>
-        <div class="col-md-2">
-            <form action="{{ route('resulttype') }}" method="get">
-            @csrf
-                <div class="form-group d-inline">
-                    <label><input type="number" name="minPrice" class="form-control">Min</label>
-                </div>
-                <div class="form-group d-inline">
-                    <label><input type="number" name="maxPrice" class="form-control">Max</label>
-                </div>
-                <div class="form-group d-inline">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-            </form>
-        </div>
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><strong>All products</strong></div>
+                <div class="card-header"><strong>Your search</strong></div>
 
                 <div class="card-body">
                     @if (session('status'))

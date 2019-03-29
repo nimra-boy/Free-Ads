@@ -23,6 +23,7 @@
         <tr>
             <th>Title</th>
             <th>Description</th>
+            <th>Pictures</th>
             <th>Price</th>
             <th width="280px">Action</th>
         </tr>
@@ -30,6 +31,13 @@
         <tr>
             <td>{{ $product->title }}</td>
             <td>{{ $product->description }}</td>
+            <td>
+            @foreach ($image as $show)
+                @if ($product->id === $show->product_id)
+                    <img style="width: 150px; height: 150px;" src="{{ asset('images/' . $show->image) }}">
+                @endif
+            @endforeach
+            </td>
             <td>{{ $product->price }}</td>
             <td>
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
