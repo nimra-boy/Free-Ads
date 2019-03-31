@@ -32,7 +32,12 @@
                                     <strong>{{ ucfirst($user->name) }}</strong><br>
                                 @endif
                                     <span style="font-size: 17px;">{!! nl2br(e($message->content)) !!}</span> <br>
-                                    <i style="font-size: 10px;">{{ $message->created_at }}</i>
+                                    <i style="font-size: 10px;">{{ $message->created_at }}</i> <br>
+                                    @if ($message->read_at != 0)
+                                        <span style="font-size: 7px; color: grey;">Seen on the {{ $message->read_at }}</span>
+                                    @else
+                                        <span style="font-size: 7px; color: grey;">Not seen yet</span>
+                                    @endif
                                 </p>
                             </div>
                         </div>
