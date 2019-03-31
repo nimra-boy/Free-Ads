@@ -18,10 +18,10 @@
             <form action="{{ route('resulttype') }}" method="get">
             @csrf
                 <div class="form-group d-inline">
-                    <label><input type="number" name="minPrice" class="form-control">Min</label>
+                    <label><input type="number" name="minPrice" min="0" class="form-control">Min</label>
                 </div>
                 <div class="form-group d-inline">
-                    <label><input type="number" name="maxPrice" class="form-control">Max</label>
+                    <label><input type="number" name="maxPrice" min="0" class="form-control">Max</label>
                 </div>
                 <div class="form-group d-inline">
                     <button type="submit" class="btn btn-primary">Search</button>

@@ -79,6 +79,16 @@
                                         @csrf
                                     </form>
 
+                                    <a class="dropdown-item" href="{{ route('conversations') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('messages-form').submit();">
+                                        {{ __('Messages') }}
+                                    </a>
+
+                                    <form id="messages-form" action="{{ route('conversations') }}" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

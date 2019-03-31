@@ -32,5 +32,9 @@ Route::post('/update', 'UserController@update')->name('update')->middleware('ver
 Route::post('/reset', 'UserController@reset')->name('reset')->middleware('verified');
 Route::get('/destroy', 'UserController@destroy')->name('destroy')->middleware('verified');
 
+Route::get('/conversations', 'ConversationsController@index')->name('conversations');
+Route::get('/conversations/{user}', 'ConversationsController@show')->name('conversations.show');
+Route::post('/conversations/{user}', 'ConversationsController@store');
+
 Route::resource('products','ProductController')->middleware('verified');
 // Route::resource('profilUser', 'UserController');

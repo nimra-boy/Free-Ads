@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::all();
-        $products = Product::paginate(5);
+        $products = Product::orderBy('updated_at','desc')->paginate(5);
         $image = Image::all();
         return view('home', compact('products', 'image', 'users'));
     }
@@ -38,7 +38,7 @@ class HomeController extends Controller
         $search = $request->get('search');
         $users = User::all();
         $image = Image::all();
-        $products = Product::where('title', 'like', '%'.$search.'%')->paginate(5);
+        $products = Product::where('title', 'like', '%'.$search.'%')->orderBy('updated_at','desc')->paginate(5);
 
         return view('result', compact('products', 'image', 'users'));
     }
@@ -49,7 +49,18 @@ class HomeController extends Controller
         $image = Image::all();
         $minPrice = $request->get('minPrice');
         $maxPrice = $request->get('maxPrice');
-        $products = Product::where('price', 'between'.$minPrice.'and'.$maxPrice)->paginate(5);
+        if(!is_null($minPrice) && !is_null($maxPrice))
+        {
+            $products = Product::whereBetween('price', [$minPrice, $maxPrice])->orderBy('updated_at','desc')->paginate(5);
+        }
+        elseif(!is_null($minPrice) && is_null($maxPrice))
+        {
+            $products = Product::whereBetween('price', [$minPrice, 999999999])->orderBy('updated_at','desc')->paginate(5);
+        }
+        elseif(is_null($minPrice) && !is_null($maxPrice))
+        {
+            $products = Product::whereBetween('price', [0, $maxPrice])->orderBy('updated_at','desc')->paginate(5);
+        }
 
         return view('result', compact('products', 'image', 'users'));
     }
