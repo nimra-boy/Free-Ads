@@ -48,6 +48,22 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Type:</strong>
+                    <select name="type" class="form-control form-control-lg">
+                        <option value="">Category</option>
+                        <option value="vehicule">Vehicule</option>
+                        <option value="immobilier">Immobilier</option>
+                        <option value="multimedia">Multimedia</option>
+                        <option value="maison">Maison</option>
+                        <option value="loisirs">Loisirs</option>
+                        <option value="materiels professionnels">Materiels professionnels</option>
+                        <option value="services">Services</option>
+                        <option value="vacances">Vacances</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Images:</strong>
                     <input multiple name="image[]" type="file" class="form-control">
                 </div>
@@ -59,4 +75,15 @@
     
     </form>
 </div>
+
+      <script>
+$(function(){
+    $("input[type='submit']").click(function(){
+        var $fileUpload = $("input[type='file']");
+        if (parseInt($fileUpload.get(0).files.length)>2){
+         alert("You can only upload a maximum of 2 files");
+        }
+    });    
+});​
+      </script>
 @endsection

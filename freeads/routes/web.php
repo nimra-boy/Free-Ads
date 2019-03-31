@@ -25,6 +25,7 @@ Route::get('/index', 'IndexController@showIndex')->name('index');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/result', 'HomeController@result')->name('result')->middleware('verified');
 Route::get('/resulttype', 'HomeController@resultType')->name('resulttype')->middleware('verified');
+Route::get('/resultcat', 'HomeController@resultCategory')->name('resultcat')->middleware('verified');
 
 Route::get('/profil', 'UserController@index')->name('profil')->middleware('verified');
 Route::get('/edit', 'UserController@edit')->name('edit')->middleware('verified');

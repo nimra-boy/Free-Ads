@@ -64,4 +64,14 @@ class HomeController extends Controller
 
         return view('result', compact('products', 'image', 'users'));
     }
+
+    public function resultCategory(Request $request)
+    {
+        $search = $request->get('type');
+        $users = User::all();
+        $image = Image::all();
+        $products = Product::where('type', $search)->orderBy('updated_at','desc')->paginate(5);
+
+        return view('result', compact('products', 'image', 'users'));
+    }
 }

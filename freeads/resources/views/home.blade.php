@@ -3,11 +3,32 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <form action="{{ route('result') }}" method="get">
             @csrf
                 <div class="form-group d-inline-block">
                     <input type="search" name="search" class="form-control" placeholder="Search by title">
+                </div>
+                <div class="form-group d-inline-block">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-5">
+            <form action="{{ route('resultcat') }}" method="get">
+            @csrf
+                <div class="form-group d-inline-block">
+                    <select name="type" class="form-control form-control-lg">
+                        <option value="">Category</option>
+                        <option value="vehicule">Vehicule</option>
+                        <option value="immobilier">Immobilier</option>
+                        <option value="multimedia">Multimedia</option>
+                        <option value="maison">Maison</option>
+                        <option value="loisirs">Loisirs</option>
+                        <option value="materiels professionnels">Materiels professionnels</option>
+                        <option value="services">Services</option>
+                        <option value="vacances">Vacances</option>
+                    </select>
                 </div>
                 <div class="form-group d-inline-block">
                     <button type="submit" class="btn btn-primary">Search</button>

@@ -49,6 +49,7 @@ class ProductController extends Controller
             'title' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'type' => 'required',
         ]);
   
         $post = Product::create([
@@ -56,6 +57,7 @@ class ProductController extends Controller
             'title' => request('title'),
             'description' => request('description'),
             'price' => request('price'),
+            'type' => request('type'),
         ]);
 
         $this->addPics($post, $request);

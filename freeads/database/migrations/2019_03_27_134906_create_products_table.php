@@ -19,10 +19,11 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('price');
+            $table->string('type');
             $table->timestamps();
 
             $table->foreign('user_id')
-                    ->references('id')->on('users');
+                    ->references('id')->on('users')->onDelete('cascade');;
         });
     }
 
